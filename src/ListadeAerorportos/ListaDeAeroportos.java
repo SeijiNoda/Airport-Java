@@ -1,6 +1,7 @@
 package ListadeAerorportos;
 
 import Airport.Airport;
+import ListaDeVoos.ListaDeVoos;
 import ListaDuplamenteLigadaDesordenadaSemRepeticao.ListaDuplamenteLigadaDesordenadaSemRepeticao;
 
 public class ListaDeAeroportos extends ListaDuplamenteLigadaDesordenadaSemRepeticao<Airport> {
@@ -8,17 +9,17 @@ public class ListaDeAeroportos extends ListaDuplamenteLigadaDesordenadaSemRepeti
         super();
     }
 
-    public boolean temAeroporto(Airport airport) throws Exception {
-        if(airport == null)
+    public boolean temAeroporto(Airport other) throws Exception {
+        if(other == null)
             throw new Exception("Aeroporto nao fornecido!");
 
         No atual = this.primeiro;
-        Airport other = null;
+        Airport airport = null;
         while(atual != null) {
-            other = (Airport) atual.getInfo();
-            if(airport.getAirportCode() == other.getAirportCode())
+            airport = (Airport) atual.getInfo();
+            if(other.getAirportCode() == airport.getAirportCode())
                 return true;
-            if(airport.getCityName().equals(other.getCityName()))
+            if(other.getCityName().equals(airport.getCityName()))
                 return true;
 
             atual = atual.getProx();
@@ -32,15 +33,34 @@ public class ListaDeAeroportos extends ListaDuplamenteLigadaDesordenadaSemRepeti
             throw new  Exception("Codigo nao fornecido!");
 
         No atual = this.primeiro;
-        Airport other = null;
+        Airport airport = null;
         while(atual != null) {
-            other = (Airport) atual.getInfo();
-            if(code == other.getAirportCode())
+            airport = (Airport) atual.getInfo();
+            if(code == airport.getAirportCode())
                 return true;
 
             atual = atual.getProx();
         }
 
+        return false;
+    }
+
+    public boolean temDeterminadoVooComCodigo(int routeCode) throws Exception {
+        if (routeCode < 0)
+            throw new Exception ("Código de rota não fornecido");
+
+        No atual = this.primeiro;
+        Airport airport = null;
+        while(atual!=null)
+        {
+            airport = (Airport)atual.getInfo();
+
+            ListaDeVoos lis = airport.getRoutes();
+            if(lis.temVooComCodigo(routeCode))
+                return true;
+
+            atual = atual.getProx();
+        }
         return false;
     }
 

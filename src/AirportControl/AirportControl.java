@@ -23,9 +23,9 @@ public class AirportControl {
     public void addRoute(Airport airport, int cityIndex, int routeNumber) throws Exception {
         if(airport == null)
             throw new Exception("Airport not provided!");
-        if(cityIndex == 0)
+        if(cityIndex < 0)
             throw new Exception("Destination code not provided!");
-        if(routeNumber == 0)
+        if(routeNumber < 0)
             throw new Exception("Route number not given!");
 
         if(!this.airports.temAeroporto(cityIndex)){
@@ -36,9 +36,12 @@ public class AirportControl {
             throw new Exception("Non existing origin airport!");
         }
 
-        //PROBLEMA: Verficar se o codigo da rota ja existe em outro aeroporto
+        //PROBLEMA: Verificar se o codigo da rota ja existe em outro aeroporto
         //Airport atual = (Airport)this.airports.getDoInicio();
         //ListaDeVoos routes = atual.getRoutes();
+        //RESOLVIDO
+        if (this.airports.temDeterminadoVooComCodigo(routeNumber))
+            throw new Exception ("There is already a route with this number!");
 
         airport.addRoute(new Route(cityIndex, routeNumber));
     }

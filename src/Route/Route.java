@@ -14,14 +14,14 @@ public class Route {
     }
 
     public void setCityIndex(int index) throws Exception {
-        if(index == 0)
+        if(index < 0)
             throw new Exception("City index not provided!");
 
         this.cityIndex = index;
     }
 
     public void setRouteNumber(int nmbr) throws Exception {
-        if(nmbr == 0)
+        if(nmbr < 0)
             throw new Exception("Route number not provided!");
 
         this.routeNumber = nmbr;
@@ -43,10 +43,10 @@ public class Route {
     }
 
     public int hashCode() {
-        final int PRIME = 2;
+        final int PRIMO = 2;
         int ret = 314;
-        ret += PRIME * ret + new Integer(this.cityIndex).hashCode();
-        ret += PRIME * ret + new Integer(this.routeNumber).hashCode();
+        ret += PRIMO * ret + new Integer(this.cityIndex).hashCode();
+        ret += PRIMO * ret + new Integer(this.routeNumber).hashCode();
 
         if(ret < 0)
             ret = -ret;

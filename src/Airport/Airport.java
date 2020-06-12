@@ -4,11 +4,12 @@ import ListaDeVoos.ListaDeVoos;
 import Route.Route;
 
 public class Airport {
-    private String cityName;
     private int airportCode;
+    private String cityName;
+    private String airportAbbreviation;
     private ListaDeVoos routes;
 
-    public Airport(String name, int code) throws Exception {
+    public Airport(String name, int code, String abbreviation) throws Exception {
         if(name == null)
             throw new Exception("No name sent!");
         if(code == 0)
@@ -16,6 +17,7 @@ public class Airport {
 
         this.cityName = name;
         this.airportCode = code;
+        this.airportAbbreviation = abbreviation;
         this.routes = new ListaDeVoos();
     }
 
@@ -27,10 +29,17 @@ public class Airport {
     }
 
     public void setAirportCode(int code) throws Exception {
-        if(code == 0)
+        if(code < 0)
             throw new Exception("Code not provided!");
 
         this.airportCode = code;
+    }
+
+    public void setAirportAbbreviation(String abbreviation) throws Exception {
+        if (abbreviation==null || abbreviation.equals(""))
+            throw new Exception ("Abbreviation not provided!");
+
+        this.airportAbbreviation = abbreviation;
     }
 
     public String getCityName() {
@@ -40,6 +49,8 @@ public class Airport {
     public int getAirportCode() {
         return this.airportCode;
     }
+
+    public String getAirportAbbreviation() { return this.airportAbbreviation; }
 
     public ListaDeVoos getRoutes() { return this.routes; }
 
@@ -61,6 +72,7 @@ public class Airport {
         String ret = "";
         ret += "Airport code: " + this.airportCode;
         ret += "\nCity: " + this.cityName;
+        ret += "\nAbbreviation: " + this.airportAbbreviation;
         ret += "\nRoutes: " + this.routes;
         return ret;
     }
@@ -71,6 +83,7 @@ public class Airport {
 
         ret += PRIMO * ret + new Integer(this.airportCode).hashCode();
         ret += PRIMO * ret + this.cityName.hashCode();
+        ret += PRIMO * ret + this.airportAbbreviation.hashCode();
         ret += PRIMO * ret + this.routes.hashCode();
 
         if(ret < 0)
@@ -88,7 +101,7 @@ public class Airport {
             return false;
 
         Airport x = (Airport) other;
-        if (this.airportCode != x.airportCode || this.cityName != x.cityName || !this.routes.equals(x.routes))
+        if (this.airportCode != x.airportCode || this.cityName != x.cityName || !this.routes.equals(x.routes) || this.airportAbbreviation != x.airportAbbreviation)
             return false;
 
         return true;
@@ -100,6 +113,7 @@ public class Airport {
 
         this.airportCode = model.airportCode;
         this.cityName = model.cityName;
+        this.airportAbbreviation = model.airportAbbreviation;
         this.routes = model.routes;
     }
 

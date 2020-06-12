@@ -9,9 +9,9 @@ public class Program {
         try {
             System.out.println("Teste de Aerorporto\n");
 
-            Airport ap1 = new Airport("Campinas", 1);
-            Airport ap2 = new Airport("Sao Paulo", 2);
-            Airport ap3 = new Airport("Belo Horizonte", 3);
+            Airport ap1 = new Airport("Campinas", 1, "VCP");
+            Airport ap2 = new Airport("Sao Paulo", 2, "GRU");
+            Airport ap3 = new Airport("Belo Horizonte", 3, "CNF");
 
             AirportControl apCont1 = new AirportControl();
                 apCont1.addAirport(ap1);

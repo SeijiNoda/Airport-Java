@@ -10,7 +10,7 @@ public class ListaDeVoos extends ListaDuplamenteLigadaDesordenadaSemRepeticao<Ro
 
     public boolean temVoo(Route other) throws Exception {
         if(other == null)
-             throw new Exception("Voo nao fornceido!");
+             throw new Exception("Voo não fornecido!");
 
         No atual = this.primeiro;
         Route route = null;
@@ -22,6 +22,24 @@ public class ListaDeVoos extends ListaDuplamenteLigadaDesordenadaSemRepeticao<Ro
             if(other.getCityIndex() == route.getCityIndex()) {
                 return true;
             }
+
+            atual = atual.getProx();
+        }
+
+        return false;
+    }
+
+    public boolean temVooComCodigo (int code) throws Exception {
+        if(code < 0)
+            throw new Exception("Código Inválido");
+
+        No atual = this.primeiro;
+        Route route = null;
+        while (atual!=null)
+        {
+            route = (Route)atual.getInfo();
+            if(route.getRouteNumber()==code)
+                return true;
 
             atual = atual.getProx();
         }
@@ -67,10 +85,10 @@ public class ListaDeVoos extends ListaDuplamenteLigadaDesordenadaSemRepeticao<Ro
 
             atual = atual.getProx();
         }
-
-        if(atual == null) {
+        throw new Exception("Informacao inexistente!");
+        /*if(atual == null) {
             throw new Exception("Informacao inexistente!");
-        }
+        }*/
     }
 
     public ListaDeVoos(ListaDeVoos model) throws  Exception {
