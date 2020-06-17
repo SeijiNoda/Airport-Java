@@ -1,4 +1,4 @@
-import java.awt.EventQueue;
+/*import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,7 +25,7 @@ import java.awt.event.ActionEvent;
 
 public class Home {
 
-	private JFrame frame;
+	//private JFrame frame;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -120,4 +120,4 @@ public class Home {
 		);
 		panel.setLayout(gl_panel);
 	}
-}
+}*/
